@@ -29,19 +29,31 @@
                 android:src="@drawable/instagram_logo_black"
                 android:contentDescription="@string/logo_instagram" />
 
-            <EditText
-                android:id="@+id/login_edit_email"
-                style="@style/Theme.InstagramApp.FormEditText"
-                android:hint="@string/email"
-                android:autofillHints="emailAddress"
-                android:inputType="textEmailAddress" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/login_edit_email_input"
+                app:hintEnabled="false"
+                style="@style/Theme.InstagramApp.FormEditTextInput">
 
-            <EditText
-                android:id="@+id/login_edit_password"
-                style="@style/Theme.InstagramApp.FormEditText"
-                android:hint="@string/password"
-                android:inputType="textPassword"
-                android:importantForAutofill="no" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/login_edit_email"
+                    style="@style/Theme.InstagramApp.FormEditText"
+                    android:hint="@string/email"
+                    android:autofillHints="emailAddress"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/login_edit_password_input"
+                app:hintEnabled="false"
+                style="@style/Theme.InstagramApp.FormEditTextInput">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/login_edit_password"
+                    style="@style/Theme.InstagramApp.FormEditText"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:importantForAutofill="no" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/login_btn_entrar"
