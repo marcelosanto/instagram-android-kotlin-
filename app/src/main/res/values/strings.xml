@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Instagram App</string>
-    <string name="email">Email</string>
+    <string name="email">E-mail</string>
     <string name="password">Senha</string>
     <string name="logo_instagram">Logo instagram</string>
     <string name="enter">Entrar</string>
