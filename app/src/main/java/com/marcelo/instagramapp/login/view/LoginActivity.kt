@@ -1,6 +1,8 @@
 package com.marcelo.instagramapp.login.view
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
@@ -18,13 +20,19 @@ class LoginActivity : AppCompatActivity() {
 
         val editEmail = binding.loginEditEmail
         val editPassword = binding.loginEditPassword
+        val buttonEnter = binding.loginBtnEntrar
 
         editEmail.addTextChangedListener(watcher)
         editPassword.addTextChangedListener(watcher)
 
-        binding.loginBtnEntrar.setOnClickListener {
+        buttonEnter.setOnClickListener {
+            buttonEnter.showProgress(true)
             editEmail.error = "Esse e-mail é inválido"
             editPassword.error = "Essa senha é inválida"
+
+            Handler(Looper.getMainLooper()).postDelayed({
+                buttonEnter.showProgress(false)
+            }, 2000)
         }
     }
 
