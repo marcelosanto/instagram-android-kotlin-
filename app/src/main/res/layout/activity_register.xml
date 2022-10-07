@@ -10,7 +10,7 @@
         android:id="@+id/register_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout="@layout/fragment_register_email"
-        android:name="com.marcelo.instagramapp.register.view.RegisterEmailFragment" />
+        tools:layout="@layout/fragment_register_welcome"
+        android:name="com.marcelo.instagramapp.register.view.RegisterWelcomeFragment" />
 
 </LinearLayout>
