@@ -42,10 +42,15 @@
                 android:text="@string/photo_register_subtitle" />
 
             <com.marcelo.instagramapp.login.view.LoadingButton
-                android:id="@+id/register_btn_next"
+                android:id="@+id/register_btn_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:text="@string/next" />
+                app:text="@string/add_photo" />
+
+            <Button
+                style="@style/Theme.InstagramApp.Link"
+                android:id="@+id/register_btn_jump"
+                android:text="@string/jump" />
 
 
         </LinearLayout>
