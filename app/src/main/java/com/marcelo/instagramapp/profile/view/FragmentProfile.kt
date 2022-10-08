@@ -1,9 +1,7 @@
 package com.marcelo.instagramapp.profile.view
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -27,6 +25,16 @@ class FragmentProfile : Fragment() {
         rv.layoutManager = GridLayoutManager(requireContext(), 3)
         rv.adapter = PostAdapter()
 
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_profile, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 }
 

@@ -19,10 +19,19 @@
             android:backgroundTint="@color/white">
 
             <androidx.appcompat.widget.Toolbar
+                android:id="@+id/main_toolbar"
                 app:layout_scrollFlags="scroll|enterAlways"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:title="@string/app_name" />
+                android:layout_height="?attr/actionBarSize">
+
+                <ImageView
+                    android:src="@drawable/instagram_logo_black"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:padding="8dp"
+                    android:contentDescription="@null" />
+            </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.AppBarLayout>
 
