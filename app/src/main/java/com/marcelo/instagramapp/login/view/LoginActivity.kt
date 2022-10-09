@@ -15,23 +15,18 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        setContentView(binding.root)
+        
+        binding.loginEditEmail.addTextChangedListener(watcher)
+        binding.loginEditPassword.addTextChangedListener(watcher)
 
-        val editEmail = binding.loginEditEmail
-        val editPassword = binding.loginEditPassword
-        val buttonEnter = binding.loginBtnEntrar
-
-        editEmail.addTextChangedListener(watcher)
-        editPassword.addTextChangedListener(watcher)
-
-        buttonEnter.setOnClickListener {
-            buttonEnter.showProgress(true)
-            editEmail.error = "Esse e-mail é inválido"
-            editPassword.error = "Essa senha é inválida"
+        binding.loginBtnEntrar.setOnClickListener {
+            binding.loginBtnEntrar.showProgress(true)
+            binding.loginEditEmail.error = "Esse e-mail é inválido"
+            binding.loginEditPassword.error = "Essa senha é inválida"
 
             Handler(Looper.getMainLooper()).postDelayed({
-                buttonEnter.showProgress(false)
+                binding.loginBtnEntrar.showProgress(false)
             }, 2000)
         }
     }
