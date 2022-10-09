@@ -38,8 +38,8 @@
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/main_fragment"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:name="com.marcelo.instagramapp.search.view.FragmentSearch"
-            tools:layout="@layout/fragment_search"
+            android:name="com.marcelo.instagramapp.camera.view.FragmentCamera"
+            tools:layout="@layout/fragment_camera"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
