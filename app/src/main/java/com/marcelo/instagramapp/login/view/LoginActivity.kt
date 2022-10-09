@@ -1,11 +1,16 @@
 package com.marcelo.instagramapp.login.view
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.marcelo.instagramapp.common.util.TxtWatcher
 import com.marcelo.instagramapp.databinding.ActivityLoginBinding
 import com.marcelo.instagramapp.login.Login
+import com.marcelo.instagramapp.login.data.FakeDataSource
+import com.marcelo.instagramapp.login.data.LoginRepository
 import com.marcelo.instagramapp.login.presentation.LoginPresenter
+import com.marcelo.instagramapp.main.MainActivity
 
 class LoginActivity : AppCompatActivity(), Login.View {
 
@@ -18,7 +23,8 @@ class LoginActivity : AppCompatActivity(), Login.View {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        presenter = LoginPresenter(this)
+        val repository = LoginRepository(FakeDataSource())
+        presenter = LoginPresenter(this, repository)
 
         with(binding) {
             loginEditEmail.addTextChangedListener(watcher)
@@ -60,10 +66,12 @@ class LoginActivity : AppCompatActivity(), Login.View {
     }
 
     override fun onUserAuthenticated() {
-        //ir para a tela principal
+        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
     }
 
-    override fun onUserUnauthorized() {
-        //mostrar um alerta
+    override fun onUserUnauthorized(message: String) {
+        Toast.makeText(this@LoginActivity, message, Toast.LENGTH_LONG).show()
     }
 }
