@@ -1,14 +1,12 @@
 package com.marcelo.instagramapp.login.view
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.text.Editable
-import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
+import com.marcelo.instagramapp.common.util.TxtWatcher
 import com.marcelo.instagramapp.databinding.ActivityLoginBinding
+import com.marcelo.instagramapp.login.Login
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), Login.View {
 
     private lateinit var binding: ActivityLoginBinding
 
@@ -16,32 +14,38 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        
-        binding.loginEditEmail.addTextChangedListener(watcher)
-        binding.loginEditPassword.addTextChangedListener(watcher)
 
-        binding.loginBtnEntrar.setOnClickListener {
-            binding.loginBtnEntrar.showProgress(true)
-            binding.loginEditEmail.error = "Esse e-mail é inválido"
-            binding.loginEditPassword.error = "Essa senha é inválida"
+        with(binding) {
+            loginEditEmail.addTextChangedListener(watcher)
+            loginEditPassword.addTextChangedListener(watcher)
 
-            Handler(Looper.getMainLooper()).postDelayed({
-                binding.loginBtnEntrar.showProgress(false)
-            }, 2000)
+            loginBtnEntrar.setOnClickListener {
+               
+            }
         }
     }
 
-    private val watcher = object : TextWatcher {
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+    private val watcher = TxtWatcher {
+        binding.loginBtnEntrar.isEnabled = it.isNotEmpty()
+    }
 
-        }
+    override fun showProgress(enabled: Boolean) {
+        binding.loginBtnEntrar.showProgress(enabled)
+    }
 
-        override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            binding.loginBtnEntrar.isEnabled = s.toString().isNotEmpty()
-        }
+    override fun displayEmailFailure(emailError: Int?) {
+        binding.loginEditEmail.error = emailError?.let { getString(it) }
+    }
 
-        override fun afterTextChanged(p0: Editable?) {
+    override fun displayPasswordFailure(passwordError: Int?) {
+        binding.loginEditEmail.error = passwordError?.let { getString(it) }
+    }
 
-        }
+    override fun onUserAuthenticated() {
+        //ir para a tela principal
+    }
+
+    override fun onUserUnauthorized() {
+        //mostrar um alerta
     }
 }
