@@ -6,11 +6,9 @@
     android:orientation="vertical"
     tools:context=".register.view.RegisterActivity">
 
-    <androidx.fragment.app.FragmentContainerView
+    <FrameLayout
         android:id="@+id/register_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout="@layout/fragment_register_photo"
-        android:name="com.marcelo.instagramapp.register.view.RegisterPhotoFragment" />
-
+        tools:layout="@layout/fragment_register_email" />
 </LinearLayout>

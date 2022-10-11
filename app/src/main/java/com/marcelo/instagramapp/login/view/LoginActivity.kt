@@ -10,6 +10,7 @@ import com.marcelo.instagramapp.databinding.ActivityLoginBinding
 import com.marcelo.instagramapp.login.Login
 import com.marcelo.instagramapp.login.presentation.LoginPresenter
 import com.marcelo.instagramapp.main.MainActivity
+import com.marcelo.instagramapp.register.view.RegisterActivity
 
 class LoginActivity : AppCompatActivity(), Login.View {
 
@@ -21,7 +22,7 @@ class LoginActivity : AppCompatActivity(), Login.View {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        
+
         presenter = LoginPresenter(this, DependencyInjector.loginRepository())
 
         with(binding) {
@@ -38,6 +39,10 @@ class LoginActivity : AppCompatActivity(), Login.View {
             loginBtnEntrar.setOnClickListener {
                 presenter.login(loginEditEmail.text.toString(), loginEditPassword.text.toString())
             }
+
+            loginTxtRegister.setOnClickListener {
+                goToRegisterScreen()
+            }
         }
     }
 
@@ -49,6 +54,10 @@ class LoginActivity : AppCompatActivity(), Login.View {
     private val watcher = TxtWatcher {
         binding.loginBtnEntrar.isEnabled = binding.loginEditEmail.text.toString()
             .isNotEmpty() && binding.loginEditPassword.text.toString().isNotEmpty()
+    }
+
+    private fun goToRegisterScreen() {
+        startActivity(Intent(this, RegisterActivity::class.java))
     }
 
     override fun showProgress(enabled: Boolean) {

@@ -1,5 +1,6 @@
 package com.marcelo.instagramapp.login
 
+import androidx.annotation.StringRes
 import com.marcelo.instagramapp.common.base.BasePresenter
 import com.marcelo.instagramapp.common.base.BaseView
 
@@ -13,8 +14,8 @@ interface Login {
     // camada View
     interface View : BaseView<Presenter> {
         fun showProgress(enabled: Boolean)
-        fun displayEmailFailure(emailError: Int?)
-        fun displayPasswordFailure(passwordError: Int?)
+        fun displayEmailFailure(@StringRes emailError: Int?)
+        fun displayPasswordFailure(@StringRes passwordError: Int?)
         fun onUserAuthenticated()
         fun onUserUnauthorized(message: String)
 
