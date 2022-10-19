@@ -3,12 +3,12 @@ package com.marcelo.instagramapp.register.presentation
 import android.util.Patterns
 import com.marcelo.instagramapp.R
 import com.marcelo.instagramapp.register.RegisterEmail
-import com.marcelo.instagramapp.register.data.RegisterEmailCallback
-import com.marcelo.instagramapp.register.data.RegisterEmailRepository
+import com.marcelo.instagramapp.register.data.RegisterCallback
+import com.marcelo.instagramapp.register.data.RegisterRepository
 
 class RegisterEmailPresenter(
     private var view: RegisterEmail.View?,
-    private val repository: RegisterEmailRepository
+    private val repository: RegisterRepository
 ) : RegisterEmail.Presenter {
     override fun create(email: String) {
         val isEmailValid = Patterns.EMAIL_ADDRESS.matcher(email).matches()
@@ -22,7 +22,7 @@ class RegisterEmailPresenter(
         if (isEmailValid) {
             view?.showProgress(true)
 
-            repository.create(email, object : RegisterEmailCallback {
+            repository.create(email, object : RegisterCallback {
                 override fun onSuccess() {
                     view?.goToNameAndPasswordScreen(email)
                 }
