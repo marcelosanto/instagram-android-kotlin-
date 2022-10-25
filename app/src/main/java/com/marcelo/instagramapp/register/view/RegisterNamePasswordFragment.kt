@@ -1,5 +1,6 @@
 package com.marcelo.instagramapp.register.view
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -15,6 +16,8 @@ class RegisterNamePasswordFragment : Fragment(R.layout.fragment_register_name_pa
     RegisterNameAndPassword.View {
 
     private var binding: FragmentRegisterNamePasswordBinding? = null
+    private var fragmentAttachListener: FragmentAttachListener? = null
+
     override lateinit var presenter: RegisterNameAndPassword.Presenter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -23,7 +26,7 @@ class RegisterNamePasswordFragment : Fragment(R.layout.fragment_register_name_pa
         binding = FragmentRegisterNamePasswordBinding.bind(view)
         presenter =
             RegisterNameAndPasswordPresenter(this, DependencyInjector.registerEmailRepository())
-        
+
         val email = arguments?.getString(KEY_EMAIL)
             ?: throw java.lang.IllegalArgumentException("email not found")
 
@@ -78,7 +81,7 @@ class RegisterNamePasswordFragment : Fragment(R.layout.fragment_register_name_pa
     }
 
     override fun onCreateSuccess(name: String) {
-        TODO("Not yet implemented")
+        fragmentAttachListener?.goToWelcomeScreen(name)
     }
 
     override fun onCreateFailure(message: String) {
@@ -93,9 +96,18 @@ class RegisterNamePasswordFragment : Fragment(R.layout.fragment_register_name_pa
                 .isNotEmpty()
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        if (context is FragmentAttachListener) {
+            fragmentAttachListener = context
+        }
+    }
+
     override fun onDestroy() {
         binding = null
         presenter.onDestroy()
+        fragmentAttachListener = null
         super.onDestroy()
     }
 

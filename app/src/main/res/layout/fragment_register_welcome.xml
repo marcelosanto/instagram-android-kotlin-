@@ -21,6 +21,7 @@
             android:paddingBottom="70dp">
 
             <TextView
+                android:id="@+id/register_txt_welcome"
                 style="@style/Theme.InstagramApp.TextViewBase.Form"
                 android:text="@string/welcome_to_instagram" />
 
