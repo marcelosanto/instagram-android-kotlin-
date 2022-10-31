@@ -20,7 +20,8 @@
             android:orientation="vertical"
             android:paddingBottom="70dp">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/register_img_profile"
                 android:layout_marginBottom="48dp"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
@@ -41,7 +42,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/photo_register_subtitle" />
 
-            <com.marcelo.instagramapp.login.view.LoadingButton
+            <com.marcelo.instagramapp.common.view.LoadingButton
                 android:id="@+id/register_btn_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

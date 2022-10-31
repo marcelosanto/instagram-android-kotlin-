@@ -25,7 +25,7 @@
                 style="@style/Theme.InstagramApp.TextViewBase.Form"
                 android:text="@string/welcome_to_instagram" />
 
-            <com.marcelo.instagramapp.login.view.LoadingButton
+            <com.marcelo.instagramapp.common.view.LoadingButton
                 android:id="@+id/register_btn_next"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

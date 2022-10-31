@@ -55,7 +55,7 @@
                     android:importantForAutofill="no" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.marcelo.instagramapp.login.view.LoadingButton
+            <com.marcelo.instagramapp.common.view.LoadingButton
                 android:id="@+id/login_btn_entrar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
