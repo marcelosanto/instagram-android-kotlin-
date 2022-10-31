@@ -7,7 +7,6 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import com.marcelo.instagramapp.R
@@ -64,8 +63,7 @@ class RegisterPhotoFragment : Fragment(R.layout.fragment_register_photo) {
         customDialog.addButton(R.string.photo, R.string.gallery) {
             when (it.id) {
                 R.string.photo -> {
-                    Toast.makeText(requireContext(), "Foto mano", Toast.LENGTH_SHORT)
-                        .show()
+                    fragmentAttachListener?.goToCameraScreen()
                 }
 
                 R.string.gallery -> {
