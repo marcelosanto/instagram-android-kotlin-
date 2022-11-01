@@ -12,6 +12,7 @@
         android:layout_height="32dp"
         android:elevation="2dp"
         android:indeterminateTint="@color/white"
+        android:indeterminateTintMode="src_in"
         android:visibility="gone"
         android:layout_marginTop="16dp"
         tools:visibility="visible" />

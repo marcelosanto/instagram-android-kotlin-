@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.Window
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.marcelo.instagramapp.databinding.DialogCustomBinding
@@ -42,6 +43,7 @@ class CustomDialog(context: Context) : Dialog(context) {
     }
 
     override fun show() {
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
         super.show()
 
         titleId?.let {
