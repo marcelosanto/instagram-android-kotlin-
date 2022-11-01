@@ -7,17 +7,23 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import com.marcelo.instagramapp.R
+import com.marcelo.instagramapp.common.base.DependencyInjector
 import com.marcelo.instagramapp.common.view.CropperImageFragment
 import com.marcelo.instagramapp.common.view.CustomDialog
 import com.marcelo.instagramapp.databinding.FragmentRegisterPhotoBinding
+import com.marcelo.instagramapp.register.RegisterPhoto
+import com.marcelo.instagramapp.register.presentation.RegisterPhotoPresenter
 
-class RegisterPhotoFragment : Fragment(R.layout.fragment_register_photo) {
+class RegisterPhotoFragment : Fragment(R.layout.fragment_register_photo), RegisterPhoto.View {
 
     private var binding: FragmentRegisterPhotoBinding? = null
     private var fragmentAttachListener: FragmentAttachListener? = null
+    override lateinit var presenter: RegisterPhoto.Presenter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +38,9 @@ class RegisterPhotoFragment : Fragment(R.layout.fragment_register_photo) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentRegisterPhotoBinding.bind(view)
+
+        val repository = DependencyInjector.registerEmailRepository()
+        presenter = RegisterPhotoPresenter(this, repository)
 
         binding?.let {
             with(it) {
@@ -86,12 +95,26 @@ class RegisterPhotoFragment : Fragment(R.layout.fragment_register_photo) {
 
             binding?.registerImgProfile?.setImageBitmap(bitmap)
 
+            presenter.updateUser(uri)
         }
     }
 
     override fun onDestroy() {
         binding = null
         fragmentAttachListener = null
+        presenter.onDestroy()
         super.onDestroy()
+    }
+
+    override fun showProgress(enabled: Boolean) {
+        binding?.registerBtnAdd?.showProgress(enabled)
+    }
+
+    override fun onUpdateSuccess() {
+        fragmentAttachListener?.goToMainScreen()
+    }
+
+    override fun onUpdateFailure(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 }
