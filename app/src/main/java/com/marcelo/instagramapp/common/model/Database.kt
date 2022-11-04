@@ -26,5 +26,7 @@ object Database {
                 "987654321"
             )
         )
+
+        sessionAuth = usersAuth.first()
     }
 }
