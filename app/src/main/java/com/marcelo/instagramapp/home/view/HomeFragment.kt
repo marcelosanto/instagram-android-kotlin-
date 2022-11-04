@@ -1,4 +1,4 @@
-package com.marcelo.instagramapp.search.view
+package com.marcelo.instagramapp.home.view
 
 import android.os.Bundle
 import android.view.*
@@ -8,20 +8,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.marcelo.instagramapp.R
 
-class FragmentSearch : Fragment() {
+class HomeFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val rv = view.findViewById<RecyclerView>(R.id.search_rv)
+        val rv = view.findViewById<RecyclerView>(R.id.home_rv)
         rv.layoutManager = LinearLayoutManager(requireContext())
         rv.adapter = PostAdapter()
 
@@ -42,7 +42,7 @@ class FragmentSearch : Fragment() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
             return PostViewHolder(
                 LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_user_list, parent, false)
+                    .inflate(R.layout.item_post_list, parent, false)
             )
         }
 
@@ -54,7 +54,7 @@ class FragmentSearch : Fragment() {
 
         inner class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             fun bind(image: Int) {
-                itemView.findViewById<ImageView>(R.id.search_img_user).setImageResource(image)
+                itemView.findViewById<ImageView>(R.id.home_img_post).setImageResource(image)
             }
 
         }

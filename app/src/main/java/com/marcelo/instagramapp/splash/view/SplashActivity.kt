@@ -28,12 +28,11 @@ class SplashActivity : AppCompatActivity(), Splash.View {
             setListener(animationEnd {
                 presenter.authenticated()
             })
+
             duration = 1000
             alpha(1.0f)
             start()
         }
-
-
     }
 
     override fun goToMainScreen() {
@@ -61,6 +60,7 @@ class SplashActivity : AppCompatActivity(), Splash.View {
                 startActivity(intent)
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
             })
+
             duration = 1000
             alpha(0.0f)
             start()

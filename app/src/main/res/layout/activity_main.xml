@@ -35,11 +35,9 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.fragment.app.FragmentContainerView
+        <FrameLayout
             android:id="@+id/main_fragment"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:name="com.marcelo.instagramapp.camera.view.FragmentCamera"
-            tools:layout="@layout/fragment_gallery"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
