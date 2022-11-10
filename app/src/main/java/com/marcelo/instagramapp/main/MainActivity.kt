@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
     private fun setScrollToolbarEnabled(enabled: Boolean) {
         val params = binding.mainToolbar.layoutParams as AppBarLayout.LayoutParams
-        var coordinatorParams = binding.mainAppbar.layoutParams as CoordinatorLayout.LayoutParams
+        val coordinatorParams = binding.mainAppbar.layoutParams as CoordinatorLayout.LayoutParams
 
         if (enabled) {
             params.scrollFlags =
