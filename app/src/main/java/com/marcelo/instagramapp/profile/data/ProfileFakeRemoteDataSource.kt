@@ -7,7 +7,7 @@ import com.marcelo.instagramapp.common.model.Database
 import com.marcelo.instagramapp.common.model.Post
 import com.marcelo.instagramapp.common.model.UserAuth
 
-class ProfileFakeDataSource : ProfileDataSource {
+class ProfileFakeRemoteDataSource : ProfileDataSource {
     override fun fetchUserProfile(userUUID: String, callback: RequestCallback<UserAuth>) {
         Handler(Looper.getMainLooper()).postDelayed({
             val userAuth = Database.usersAuth.firstOrNull { userUUID == it.uuid }
@@ -31,5 +31,5 @@ class ProfileFakeDataSource : ProfileDataSource {
         }, 2000)
     }
 
-
+   
 }

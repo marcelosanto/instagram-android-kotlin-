@@ -2,7 +2,9 @@ package com.marcelo.instagramapp.common.base
 
 import com.marcelo.instagramapp.login.data.FakeDataSource
 import com.marcelo.instagramapp.login.data.LoginRepository
-import com.marcelo.instagramapp.profile.data.ProfileFakeDataSource
+import com.marcelo.instagramapp.profile.data.PostListMemoryCache
+import com.marcelo.instagramapp.profile.data.ProfileDataSourceFactory
+import com.marcelo.instagramapp.profile.data.ProfileMemoryCache
 import com.marcelo.instagramapp.profile.data.ProfileRepository
 import com.marcelo.instagramapp.register.data.RegisterFakeDataSource
 import com.marcelo.instagramapp.register.data.RegisterRepository
@@ -23,7 +25,7 @@ object DependencyInjector {
     }
 
     fun profileRepository(): ProfileRepository {
-        return ProfileRepository(ProfileFakeDataSource())
+        return ProfileRepository(ProfileDataSourceFactory(ProfileMemoryCache, PostListMemoryCache))
     }
 
 

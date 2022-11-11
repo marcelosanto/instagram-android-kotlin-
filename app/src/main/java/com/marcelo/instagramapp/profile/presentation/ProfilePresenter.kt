@@ -1,7 +1,6 @@
 package com.marcelo.instagramapp.profile.presentation
 
 import com.marcelo.instagramapp.common.base.RequestCallback
-import com.marcelo.instagramapp.common.model.Database
 import com.marcelo.instagramapp.common.model.Post
 import com.marcelo.instagramapp.common.model.UserAuth
 import com.marcelo.instagramapp.profile.Profile
@@ -15,10 +14,7 @@ class ProfilePresenter(
     override fun fetchUserProfile() {
         view?.showProgress(true)
 
-        val userUUID =
-            Database.sessionAuth?.uuid ?: throw RuntimeException("user not found")
-
-        repository.fetchUserProfile(userUUID, object : RequestCallback<UserAuth> {
+        repository.fetchUserProfile(object : RequestCallback<UserAuth> {
             override fun onSuccess(data: UserAuth) {
                 view?.displayUserProfile(data)
             }
@@ -36,10 +32,7 @@ class ProfilePresenter(
     }
 
     override fun fetchUserPosts() {
-        val userUUID =
-            Database.sessionAuth?.uuid ?: throw RuntimeException("user not found")
-
-        repository.fetchUserPosts(userUUID, object : RequestCallback<List<Post>> {
+        repository.fetchUserPosts(object : RequestCallback<List<Post>> {
             override fun onSuccess(data: List<Post>) {
                 if (data.isNotEmpty()) view?.displayFullPosts(data)
                 else view?.displayEmptyPost()
