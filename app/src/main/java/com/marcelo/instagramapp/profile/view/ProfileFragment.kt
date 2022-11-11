@@ -6,10 +6,12 @@ import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.marcelo.instagramapp.R
 import com.marcelo.instagramapp.common.base.BaseFragment
+import com.marcelo.instagramapp.common.base.DependencyInjector
 import com.marcelo.instagramapp.common.model.Post
 import com.marcelo.instagramapp.common.model.UserAuth
 import com.marcelo.instagramapp.databinding.FragmentProfileBinding
 import com.marcelo.instagramapp.profile.Profile
+import com.marcelo.instagramapp.profile.presentation.ProfilePresenter
 
 class ProfileFragment :
     BaseFragment<FragmentProfileBinding, Profile.Presenter>(
@@ -29,7 +31,7 @@ class ProfileFragment :
     }
 
     override fun setupPresenter() {
-        //TODO: presenter = ProfilePresenter(this, repository)
+        presenter = ProfilePresenter(this, DependencyInjector.profileRepository())
     }
 
     override fun getMenu(): Int? {

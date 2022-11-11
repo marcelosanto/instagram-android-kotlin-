@@ -24,7 +24,7 @@ class PostAdapter() : RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
         holder.bind(items[position].uri)
     }
 
-    override fun getItemCount() = 30
+    override fun getItemCount() = items.size
 
     inner class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(image: Uri) {
